@@ -1,5 +1,5 @@
 const express = require('express')
-const mongoose = require('./lib/connection')
+const mongoose = require('./config/connection')
 const cors = require('cors')
 
 
