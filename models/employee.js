@@ -78,8 +78,9 @@ const employeeSchema = new Schema({
     status: {
         type: String,
         required: false,
+        enum: ['Current-employee', 'Candidate', 'Trainee', 'Former-employee']
     },
-    depedants: [ dependatSchema ],
+    dependants: [ dependatSchema ],
     positon: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Position'
