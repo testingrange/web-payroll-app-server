@@ -24,7 +24,7 @@ router.get('/employees', (req, res, next) => {
 
 // SHOW
 // GET /employees/:id
-router.get('/employee/:id', (req, res, next) => {
+router.get('/employees/:id', (req, res, next) => {
     Employee.findById(req.params.id)
         .then(handle404)
         .then(employee => {
@@ -46,7 +46,7 @@ router.post('/employees', (req, res, next) =>{
 
 // UPDATE
 // PATCH /employees/:id
-router.patch('/employee/:id', (req, res, next) => {
+router.patch('/employees/:id', (req, res, next) => {
     Employee.findById(req.params.id)
         .then(handle404)
         .then(employee => {
@@ -61,7 +61,7 @@ router.patch('/employee/:id', (req, res, next) => {
 // DELETE
 // DELETE /employee/:id
 
-router.delete('/employee/:id', (req, res, next) => {
+router.delete('/employees/:id', (req, res, next) => {
     Employee.findById(req.params.id)
     .then(handle404)
     .then(employee => {

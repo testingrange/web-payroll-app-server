@@ -49,5 +49,16 @@ router.patch('/employees/:dependantId', (req, res, next) => {
 // DELETE /employee/:dependantId
 
 router.delete('/employees/:dependantId', (req, res, next) => {
-    
+    const employeeId = req.body.dependant.employeeId
+
+    Employee.findById(employeeId)
+        .then(handle404)
+        .then(employee => {
+            employee.dependants.id(req.params.dependantId).remove()
+            return employee.save()
+        })
+        .then(() => res.sendStatus(204))
+        .catch(next)
 })
+
+module.exports = router

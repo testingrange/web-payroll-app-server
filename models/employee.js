@@ -6,8 +6,9 @@ const dependatSchema = require('./dependant')
 
 const employeeSchema = new Schema({
     id: {
-        type: Number,
+        type: String,
         required: true,
+        unique: true,
     },
     firstName: {
         type: String,
@@ -16,6 +17,10 @@ const employeeSchema = new Schema({
     middleName: {
         type: String,
         required: false,
+    },
+    lastName: {
+        type: String,
+        required: true,
     },
     dob: {
         type: Date,
@@ -26,10 +31,8 @@ const employeeSchema = new Schema({
         required: false,
     },
     ssn: {
-        type: Number,
+        type: String,
         required: true,
-        min: 1000,
-        max: 9999,
     },
     contacts: {
         cell: {
@@ -45,8 +48,7 @@ const employeeSchema = new Schema({
             required: false,
         }
     },
-    address: [
-        {
+    address: {
             type: {
                 type: String,
                 required: false,
@@ -68,13 +70,10 @@ const employeeSchema = new Schema({
                 required: false
             },
             zip: {
-                type: Number,
+                type: String,
                 required: false,
-                min: 10000,
-                max: 99999
             }
-        }
-    ],
+        },
     status: {
         type: String,
         required: false,
