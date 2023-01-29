@@ -3,24 +3,26 @@ const router = express.Router()
 
 const Employee = require('../models/employee')
 const {handle404} = require('../lib/custom-errors')
-
+const { requireToken } = require('../config/auth')
 
 
 // CREATE
 // POST /dependants
 
-router.post('/dependants', (req, res, next) => {
-    const employeeId = req.body.dependant.employeeId
+router.post('/dependants', requireToken, (req, res, next) => {
+    const employeeId = req.body.dependant.employeeId    
     const dependantBody = req.body.dependant
-
+    
     Employee.findById(employeeId)
         .then(handle404)
         .then(employee => {
+            
+            // console.log(employee)
             employee.dependants.push(dependantBody)
             return employee.save()
         })
         .then(employee => {
-            res.sendStatus(201).json({ employee: employee})
+            res.status(201).json({ employee: employee})
         })
         .catch(next)
 })
@@ -29,7 +31,7 @@ router.post('/dependants', (req, res, next) => {
 // UPDATE
 // PATCH /employees/:dependantId
 
-router.patch('/employees/:dependantId', (req, res, next) => {
+router.patch('/dependants/:dependantId', requireToken, (req, res, next) => {
     const employeeId = req.body.dependant.employeeId
     const dependantBody = req.body.dependant
 
@@ -48,7 +50,7 @@ router.patch('/employees/:dependantId', (req, res, next) => {
 // DELETE
 // DELETE /employee/:dependantId
 
-router.delete('/employees/:dependantId', (req, res, next) => {
+router.delete('/dependants/:dependantId', requireToken, (req, res, next) => {
     const employeeId = req.body.dependant.employeeId
 
     Employee.findById(employeeId)

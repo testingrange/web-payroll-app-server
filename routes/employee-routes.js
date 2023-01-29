@@ -1,6 +1,9 @@
+
 const express = require('express')
 
 const { handle404 } = require('../lib/custom-errors')
+
+const { requireToken } = require('../config/auth')
 
 const Employee = require('../models/employee')
 
@@ -9,7 +12,7 @@ const router = express.Router()
 
 // INDEX
 // GET /employees
-router.get('/employees', (req, res, next) => {
+router.get('/employees', requireToken, (req, res, next) => {
     Employee.find()
         .then(employee => {
             return employee.map(employee => employee)
@@ -24,7 +27,7 @@ router.get('/employees', (req, res, next) => {
 
 // SHOW
 // GET /employees/:id
-router.get('/employees/:id', (req, res, next) => {
+router.get('/employees/:id', requireToken, (req, res, next) => {
     Employee.findById(req.params.id)
         .then(handle404)
         .then(employee => {
@@ -36,7 +39,7 @@ router.get('/employees/:id', (req, res, next) => {
 
 // CREATE
 // POST /employees
-router.post('/employees', (req, res, next) =>{
+router.post('/employees', requireToken, (req, res, next) =>{
     Employee.create(req.body.employee)
         .then(employee => {
             res.status(201).json({ employee: employee})
@@ -46,7 +49,7 @@ router.post('/employees', (req, res, next) =>{
 
 // UPDATE
 // PATCH /employees/:id
-router.patch('/employees/:id', (req, res, next) => {
+router.patch('/employees/:id', requireToken, (req, res, next) => {
     Employee.findById(req.params.id)
         .then(handle404)
         .then(employee => {
@@ -61,7 +64,7 @@ router.patch('/employees/:id', (req, res, next) => {
 // DELETE
 // DELETE /employee/:id
 
-router.delete('/employees/:id', (req, res, next) => {
+router.delete('/employees/:id', requireToken, (req, res, next) => {
     Employee.findById(req.params.id)
     .then(handle404)
     .then(employee => {

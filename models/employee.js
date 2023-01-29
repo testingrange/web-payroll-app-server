@@ -33,6 +33,7 @@ const employeeSchema = new Schema({
     ssn: {
         type: String,
         required: true,
+        unique: true,
     },
     contacts: {
         cell: {
@@ -76,8 +77,9 @@ const employeeSchema = new Schema({
         },
     status: {
         type: String,
+        enum: ['Current-employee', 'Candidate', 'Trainee', 'Former-employee', ''],
         required: false,
-        enum: ['Current-employee', 'Candidate', 'Trainee', 'Former-employee']
+        default: 'Candidate'
     },
     dependants: [ dependatSchema ],
     positon: {

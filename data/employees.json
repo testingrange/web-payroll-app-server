@@ -63,5 +63,26 @@
             "zip": "12301"
             },
         "status": "Trainee"
+},
+    {
+        "id": "00004",
+        "firstName": "Martin",
+        "dob": "02/12/1998",
+        "lastName": "Johnson",
+        "driverLicense": "002-124-526",
+        "ssn": "2513",
+        "contacts": {
+            "cell": "212-242-66-78",
+            "email": "a.valevsky@mail.com" 
+            },
+        "address": {
+            "type": "residential",
+            "line1": "225 Patchen ave",
+            "line2": "apt. 1C",
+            "city": "Brooklyn",
+            "state": "New York",
+            "zip": "11233"
+            },
+        "status": "Former-employee"
 }
 ]
