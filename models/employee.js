@@ -39,47 +39,56 @@ const employeeSchema = new Schema({
         cell: {
             type: String,
             required: false,
+            default: '',
         },
         home_phone: {
             type: String,
             required: false,
+            default: '',
         },
         email: {
             type: String,
             required: false,
+            default: '',
         }
     },
     address: {
             type: {
                 type: String,
                 required: false,
+                default: '',
             },
             line1: {
                 type: String,
                 required: false,
+                default: '',
             },
             line2: {
                 type: String,
                 required: false,
+                default: '',
             },
             city: {
                 type: String,
                 required: false,
+                default: '',
             },
             state: {
                 type: String,
-                required: false
+                required: false,
+                default: '',
             },
             zip: {
                 type: String,
                 required: false,
+                default: '',
             }
         },
     status: {
         type: String,
         enum: ['Current-employee', 'Candidate', 'Trainee', 'Former-employee', ''],
         required: false,
-        default: 'Candidate'
+        default: ''
     },
     dependants: [ dependatSchema ],
     positon: {
@@ -90,6 +99,7 @@ const employeeSchema = new Schema({
         type: Number,
         required: false,
         max: 999999999,
+        default: 0,
     },
     lastUpdatedBy: {
         type: mongoose.Schema.Types.ObjectId,
