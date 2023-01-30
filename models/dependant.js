@@ -9,7 +9,8 @@ const dependatSchema = new Schema({
     },
     middleName: {
         type: String,
-        required: false
+        required: false,
+        default: '',
     },
     lastName: {
         type: String,

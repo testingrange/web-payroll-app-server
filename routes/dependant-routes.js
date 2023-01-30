@@ -29,7 +29,7 @@ router.post('/dependants', requireToken, (req, res, next) => {
 
 
 // UPDATE
-// PATCH /employees/:dependantId
+// PATCH /dependants/:dependantId
 
 router.patch('/dependants/:dependantId', requireToken, (req, res, next) => {
     const employeeId = req.body.dependant.employeeId
@@ -48,10 +48,13 @@ router.patch('/dependants/:dependantId', requireToken, (req, res, next) => {
 
 
 // DELETE
-// DELETE /employee/:dependantId
+// DELETE /dependants/:dependantId
 
-router.delete('/dependants/:dependantId', requireToken, (req, res, next) => {
-    const employeeId = req.body.dependant.employeeId
+router.delete('/dependants/:employeeId/:dependantId', requireToken, (req, res, next) => {
+    // const employeeId = req.body.dependant.employeeId
+    const employeeId = req.params.employeeId
+    console.log(employeeId, "EmployeeID On a server")
+    console.log(req.params.dependantId, "Dependant Id on a server")
 
     Employee.findById(employeeId)
         .then(handle404)
