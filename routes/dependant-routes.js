@@ -53,8 +53,6 @@ router.patch('/dependants/:dependantId', requireToken, (req, res, next) => {
 router.delete('/dependants/:employeeId/:dependantId', requireToken, (req, res, next) => {
     // const employeeId = req.body.dependant.employeeId
     const employeeId = req.params.employeeId
-    console.log(employeeId, "EmployeeID On a server")
-    console.log(req.params.dependantId, "Dependant Id on a server")
 
     Employee.findById(employeeId)
         .then(handle404)
